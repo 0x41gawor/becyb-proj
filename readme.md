@@ -165,5 +165,22 @@ Make sure its running on the correct port:
 sudo netstat -tulpn | grep endlessh
 ```
 
+## 4. Test it out
 
+### 4.1 First check the legit SSH connection on new port
 
+![](img/7.png)
+
+### 4.2 Now try to connect with default port or no port specified
+
+![](img/8.png)
+
+As you can see the console stops and nothing is displayed. The program is stuck. Console does not give control back. As a human we can easily detect it and just stop our attempt with SIGNINT (ctrl+c), but for the automated script this is what we call the **SSH JAIL!!!**.
+
+Lets see what under the hood with verbose option:
+
+![](img/9.png)
+
+We get this "ssh_exchange_identification" every 30 seconds (time interval can be configured).
+
+Script kiddie trapped inside our SSH Jail can spent very long time before attacker figures it out. And remember that in cyber security every minute lost by the attacker is a minute gained by us. 
